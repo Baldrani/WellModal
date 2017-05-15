@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Well Modal</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="script.js"></script>
+        <link rel="stylesheet" href="style.css" />
+    </head>
+    <style>
+        a{
+            height: 110vh;
+            display: block;
+        }
+        #myModal{
+            background: green;
+            height: 100px;
+            width: 100px;
+            border-radius: 20px;
+            color: #99d499;
+            text-align: center;
+            line-height: 100px;
+        }
+    </style>
+    <body>
+
+        <h2>Usage :</h2>
+        <ul>
+            <li>Add data-purpose="modal" to an element
+            <li>Add data-target="selector"
+            <li>Add class="wellModal" to the element
+            <li>There you have it!
+        </ul>
+        <button data-target="#myModal" data-purpose="modal">Click Me</button>
+        <div class="wellModal" id="myModal">
+            test
+        </div>
+        <a href="#">Test purpose</a>
+    </body>
+</html>
