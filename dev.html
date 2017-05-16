@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Well Modal</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <!-- <script src="script.js"></script>
+        <link rel="stylesheet" href="style.css" /> -->
+    </head>
+    <script>
+    //TODO Prevoir how to close
+    //TODO Revoi how to close améliorer fonction global
+    $(document).ready(function() {
+        $(document).on('click', '[data-purpose="modal"]', function(){
+            $_ = $($(this).data('target'));
+            $_.toggle(0,function(){
+                $_.css('opacity','1');
+                $_.css('top','calc(50vh - '+$_.height()/2+'px)');
+                $_.css('left','calc(50% - '+$_.width()/2+'px)');
+            });
+            $('body').append('<div class="backgroundModal" data-link="#'+$_[0].id+'"></div>');
+            $('body').css('overflow','hidden');
+        });
+        $(document).on('click', '.backgroundModal', function(){
+            $_ = $($(this).data('link'));
+            console.log($_.attr('data-close'));
+            if($_.attr('data-close') != 'false'){
+                $('body').css('overflow','');
+                $_.css('opacity','0');
+                $_.toggle();
+                $(this).remove();
+            }
+        });
+        function closeModal(){
+
+        }
+    });
+    $(document).on('click', '[data-purpose="closeModal"]', function(){
+        $(this).parents('.wellModal').attr('data-close','');
+    });
+    </script>
+    <style>
+        a{
+            height: 110vh;
+            display: block;
+        }
+        #myModal{
+            border-radius: 20px;
+            text-align: center;
+            line-height: 100px;
+        }
+        .wellModal{
+            display: none;
+            z-index: 9999;
+            position: fixed;
+            opacity: 0;
+            transition: 1.5s ease all;
+            background: #fff;
+        }
+        .backgroundModal{
+            z-index: 9998;
+            background: #000;
+            opacity: 0.5;
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+        }
+        [data-purpose="modal"]{
+            cursor: pointer;
+        }
+
+    </style>
+    <body>
+
+        <h2>Usage :</h2>
+        <ul>
+            <li>Add data-purpose="modal" to an element
+            <li>Add data-target="selector"
+            <li>Add class="wellModal" to the element
+            <li>Add attribute data-close"false" to enable not closing until something validate. Remove it after validation
+            <li>There you have it!
+        </ul>
+        <button data-target="#myModal" data-purpose="modal">Click Me</button>
+        <div class="wellModal" id="myModal" data-close="false">
+            Vous devez être inscrit pour consulter cette page !
+            <button data-purpose="closeModal">TO INSCRIPTION</button>
+            <hr>
+            Avec Facebook
+            <div>
+                Déjà Membre ? Connexion
+            </div>
+        </div>
+        <a href="#">Test purpose</a>
+    </body>
+</html>
